@@ -1,0 +1,28 @@
+.dataContent{
+    background-color: whitesmoke;
+    margin: 10px;
+    text-align: center;
+    padding: 10px;
+    margin: 20px;
+}
+
+.dataContent:hover{
+    transform: scale(1.08);
+}
+
+.dataContent > h3{
+    font-size: 18px;
+}
+
+.dataContent > button{
+    background-color: orange;
+    cursor: pointer;
+    height: 38px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.dataContent > button:hover{
+    background-color: rgb(250, 222, 173);
+}

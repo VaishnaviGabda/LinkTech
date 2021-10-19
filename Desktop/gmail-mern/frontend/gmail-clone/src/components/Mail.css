@@ -1,0 +1,43 @@
+.mail{
+    background-color: white;
+    margin: 3px;
+    height: 7%;
+    display: flex;
+    place-items: center;
+    cursor: pointer;
+}
+
+#deleteIcon{
+    display: none !important;
+    height: 26px;
+    color: rgb(68, 67, 67);
+}
+
+.mail:hover{
+    box-shadow: 0px 5px 7px 0px rgb(175, 175, 175);
+}
+
+.mail > .MuiSvgIcon-root{
+    height: 24px;
+    color: rgb(63, 62, 62);
+}
+
+.mail__content{
+    width: 93%;
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-between;
+}
+
+.mail__content:hover #deleteIcon{
+    display: block !important;
+}
+
+.mail__content > h5{
+    margin-left: 30px !important;
+    font-size: 19px;
+}
+
+.mail__content > p{
+    color: rgb(85, 84, 84);
+}

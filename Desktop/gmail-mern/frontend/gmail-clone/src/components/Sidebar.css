@@ -1,0 +1,61 @@
+#compose_btn{
+    padding: 20px;
+    height: 60px;
+    font-size: 20px;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    margin: 20px;
+    color: rgb(58, 57, 57);
+    cursor: pointer;
+}
+
+.sidebar__menu{
+    width: 100%;
+}
+
+.sidebar__menu__content{
+    height: 34px;
+    width: 90%;
+    margin: 1px;
+    cursor: pointer;
+}
+
+.sidebar__menu__content:hover{
+    background-color: rgb(241, 240, 240);
+}
+
+.sidebar__menu__content{
+    display: flex;
+    flex-direction: row;
+    font-weight: 500;
+    place-items: center;
+    padding-left: 20px !important;
+    padding: 1px;
+    height: 38px;
+    border-radius: 0 20px 20px 0;
+}
+
+.sidebar__menu__content > .MuiSvgIcon-root{
+    height: 24px;
+    margin-right: 10px;
+    color: rgb(70, 69, 69);
+}
+
+.selectedOption{
+    background-color: rgb(252, 228, 228);
+    color: #d93025;
+    font-weight: 700;
+}
+
+.selectedOption > .MuiSvgIcon-root{
+    color: #d93025;
+}
+
+.selectedOption:hover{
+    background-color: rgb(252, 228, 228);
+}
+
+.sidebar{
+    width: 25%;
+}
