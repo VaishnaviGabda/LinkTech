@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/admin/login.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // theme: ThemeData(
+      //   primaryColor: HexColor("#0000FF")
+      // ),
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       home: Login(),
     );
