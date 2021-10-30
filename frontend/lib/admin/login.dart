@@ -29,7 +29,7 @@ class _LoginState extends State<Login> {
               Container(
                 margin: EdgeInsets.all(18),
                 alignment: Alignment.topLeft,
-                child: Text("Login",
+                child: Text("Sign In",
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.w400,
