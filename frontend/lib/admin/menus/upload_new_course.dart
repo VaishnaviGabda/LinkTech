@@ -77,7 +77,7 @@ class _UploadNewCourseState extends State<UploadNewCourse> {
               child: RaisedButton(
                   child: Container(
                       padding: EdgeInsets.all(10),
-                      child: Text("Upload New Course",
+                      child: Text("Upload New Courseg",
                           style: TextStyle(
                             fontSize: 15,
                             color: Colors.white,
