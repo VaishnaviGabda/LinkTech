@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/admin/login.dart';
 import 'package:frontend/admin/menus/enrolled_students.dart';
+import 'package:frontend/admin/menus/profile.dart';
 import 'package:frontend/admin/menus/student_requests.dart';
 import 'package:frontend/admin/menus/upload_new_course.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -22,7 +23,7 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     var container;
     if (currentPage == DrawerSections.Login) {
-      container = Login();
+      container = Profile();
     } else if (currentPage == DrawerSections.Courses) {
       container = UploadNewCourse();
     } else if (currentPage == DrawerSections.Requests) {
@@ -57,13 +58,13 @@ class _DashboardState extends State<Dashboard> {
       child: Column(
         // shows the list of menu drawer
         children: [
-          menuItem(1, "Login", Icons.mood_outlined,
+          menuItem(1, "Profile", Icons.person,
               currentPage == DrawerSections.Login ? true : false),
           menuItem(2, "Courses", Icons.book_outlined,
               currentPage == DrawerSections.Courses ? true : false),
           menuItem(3, "Requests", Icons.person_add_alt_outlined,
               currentPage == DrawerSections.Requests ? true : false),
-          menuItem(4, "Students", Icons.people_alt_rounded,
+          menuItem(4, "Students", Icons.school_outlined,
               currentPage == DrawerSections.Students ? true : false),
         ],
       ),

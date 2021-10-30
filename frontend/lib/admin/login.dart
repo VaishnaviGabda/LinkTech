@@ -1,14 +1,24 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/admin/Home/dashboard.dart';
 import 'package:frontend/admin/register.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
   @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  bool _isHidden = true;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: HexColor("#0000FF"),
+        title: Text('LinkTech'),
+      ),
       body: Container(
         padding: EdgeInsets.all(20),
         alignment: Alignment.center,
@@ -40,15 +50,23 @@ class Login extends StatelessWidget {
               Container(
                 margin: EdgeInsets.all(12),
                 child: TextField(
-                  obscureText: true,
+                  obscureText: _isHidden,
                   decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.remove_red_eye_outlined),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      hintText: " Enter password",
-                      hintStyle: TextStyle(fontSize: 14)),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    hintText: " Enter password",
+                    hintStyle: TextStyle(fontSize: 14),
+                    suffix: InkWell(
+                      onTap: _togglePasswordView,
+                      child: Icon(
+                        _isHidden
+                            ? Icons.visibility_off_outlined
+                            : Icons.remove_red_eye_outlined,
+                      ),
+                    ),
+                  ),
                 ),
               ),
               Container(
@@ -57,14 +75,19 @@ class Login extends StatelessWidget {
                 child: RaisedButton(
                     child: Container(
                         padding: EdgeInsets.all(10),
-                        child: Text("Sign Up",
+                        child: Text("Sign In",
                             style: TextStyle(
                               fontSize: 15,
                               color: Colors.white,
                               fontWeight: FontWeight.w400,
                             ))),
                     color: HexColor("#0000FF"),
-                    onPressed: () {}),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Dashboard()),
+                      );
+                    }),
               ),
               Container(
                 margin: EdgeInsets.all(18),
@@ -86,5 +109,11 @@ class Login extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _togglePasswordView() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
   }
 }

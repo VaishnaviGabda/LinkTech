@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/admin/menus/sub_menu/java.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class StudentRequests extends StatefulWidget {
@@ -17,29 +18,35 @@ class _StudentRequestsState extends State<StudentRequests> {
       home: DefaultTabController(
         length: 6,
         child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: HexColor("#0000FF"),
-            bottom: const TabBar(
-              indicatorColor: Colors.white,
-              isScrollable: true,
-              tabs: [
-                Tab(text: "Java"),
-                Tab(text: "C"),
-                Tab(text: "CPP"),
-                Tab(text: "Data Structures"),
-                Tab(text: "DBMS"),
-                Tab(text: "CPP"),
-              ],
-            ),
-          ),
-          body: const TabBarView(
+          body: Column(
             children: [
-              Icon(Icons.directions_car),
-              Icon(Icons.directions_transit),
-              Icon(Icons.directions_bike),
-              Icon(Icons.directions_car),
-              Icon(Icons.directions_transit),
-              Icon(Icons.directions_bike),
+              Container(
+                color: HexColor("#0000FF"),
+                child: TabBar(
+                  indicatorColor: Colors.white,
+                  isScrollable: true,
+                  tabs: [
+                    Tab(text: "Java"),
+                    Tab(text: "C"),
+                    Tab(text: "CPP"),
+                    Tab(text: "Data Structures"),
+                    Tab(text: "DBMS"),
+                    Tab(text: "CPP"),
+                  ],
+                ),
+              ),
+              Container(
+                child: TabBarView(
+                  children: [
+                    Java(),
+                    Icon(Icons.directions_transit),
+                    Icon(Icons.directions_bike),
+                    Icon(Icons.directions_car),
+                    Icon(Icons.directions_transit),
+                    Icon(Icons.directions_bike),
+                  ],
+                ),
+              )
             ],
           ),
         ),
