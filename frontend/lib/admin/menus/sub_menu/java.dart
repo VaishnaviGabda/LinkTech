@@ -9,34 +9,39 @@ class Java extends StatefulWidget {
 }
 
 class _JavaState extends State<Java> {
+  var btnText = "Request";
+  bool flag = true;
+
   @override
-  bool _value = false;
   Widget build(BuildContext context) {
-    return Container(
-        child: ListView(
-      shrinkWrap: true,
-      padding: const EdgeInsets.all(20.0),
-      children: [
-        Row(
-          children: [
-            Text('abc'),
-            Spacer(),
-            InkWell(
-              child: _value
-                  ? Icon(
-                      Icons.check,
-                      size: 30.0,
-                      color: Colors.green[900],
-                    )
-                  : Icon(
-                      Icons.check_box_outline_blank,
-                      size: 30.0,
-                      color: Colors.blue,
-                    ),
-            )
-          ],
-        )
-      ],
-    ));
+    return ListView.builder(itemBuilder: (context, index) {
+      return Card(
+          child: ListTile(
+              title: Row(children: [
+        Text("Riddhi Pawar",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w800)),
+        Spacer(),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: flag ? Colors.blue: Colors.green[700]
+          ),
+            onPressed: () {
+              setState(() {
+                btnText = "Confirmed";
+                flag = !flag;
+              });
+            },
+            child: Text(btnText)),
+        Spacer(),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Colors.red[700]
+          ),
+          onPressed: () {}, child: Icon(Icons.delete_outline)),
+      ])
+              // trailing: Row(
+              //   children: [Icon(Icons.check),Icon(Icons.delete_outline_outlined)],
+              // ),
+              ));
+    });
   }
 }
