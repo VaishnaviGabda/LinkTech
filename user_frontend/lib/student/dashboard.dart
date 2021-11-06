@@ -1,8 +1,12 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:user_frontend/student/Tabs/about.dart';
 import 'package:user_frontend/student/Tabs/home.dart';
+import 'package:user_frontend/student/Tabs/mycourses.dart';
+import 'package:user_frontend/student/Tabs/profile-pages/themes.dart';
+import 'package:user_frontend/student/Tabs/profile-pages/user_preferences.dart';
 import 'package:user_frontend/student/Tabs/profile.dart';
 
 class Dashboard extends StatefulWidget {
@@ -14,43 +18,43 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: HexColor("#0000FF"),
-            bottom: const TabBar(
-              indicatorColor: Colors.white,
-              isScrollable: true,
-              tabs: [
-                Tab(text: "Home"),
-                Tab(text: "Profile"),
-                Tab(text: "About"),
-              ],
-            ),
-            title: Row(
-              children: [
-                Image.asset(
-                  'assets/images/logoo.png',
-                  width: 22,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  'LinkTech',
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-          body: const TabBarView(
-            children: [Home(), Profile(), About()],
-          ),
-        ),
-      ),
-    );
+    final user = UserPrefences.myUser;
+    return ThemeProvider(
+        initTheme: user.isDarkMode ? MyThemes.darkTheme : MyThemes.lightTheme,
+        child: Builder(
+            builder: (context) => MaterialApp(
+                  theme: ThemeProvider.of(context),
+                  debugShowCheckedModeBanner: false,
+                  home: DefaultTabController(
+                    length: 3,
+                    child: Scaffold(
+                      appBar: AppBar(
+                        backgroundColor: HexColor("#0000FF"),
+                        bottom: const TabBar(
+                          indicatorColor: Colors.white,
+                          isScrollable: true,
+                          tabs: [
+                            Tab(text: "Home"),
+                            Tab(text: "About"),
+                            Tab(text: "Profile"),
+                          ],
+                        ),
+                        title: Row(
+                          children: [
+                            Image.asset('assets/images/logoo.png', width: 19),
+                            SizedBox(height: 5),
+                            const Text(
+                              'LinkTech',
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ],
+                        ),
+                      ),
+                      body: const TabBarView(
+                        children: [Home(), About(), Profile()],
+                      ),
+                    ),
+                  ),
+                )));
   }
 }

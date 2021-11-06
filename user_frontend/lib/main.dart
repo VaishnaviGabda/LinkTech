@@ -1,9 +1,13 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:user_frontend/student/Tabs/profile-pages/user_preferences.dart';
 import 'package:user_frontend/student/dashboard.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await UserPrefences.init();
+
   runApp(const MyApp());
 }
 
