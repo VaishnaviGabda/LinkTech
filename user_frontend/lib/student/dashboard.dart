@@ -23,8 +23,8 @@ class _DashboardState extends State<Dashboard> {
         initTheme: user.isDarkMode ? MyThemes.darkTheme : MyThemes.lightTheme,
         child: Builder(
             builder: (context) => MaterialApp(
-                  theme: ThemeProvider.of(context),
                   debugShowCheckedModeBanner: false,
+                  theme: ThemeProvider.of(context),
                   home: DefaultTabController(
                     length: 3,
                     child: Scaffold(
@@ -42,7 +42,7 @@ class _DashboardState extends State<Dashboard> {
                         title: Row(
                           children: [
                             Image.asset('assets/images/logoo.png', width: 19),
-                            SizedBox(height: 5),
+                            SizedBox(height: 9),
                             const Text(
                               'LinkTech',
                               style: TextStyle(fontSize: 18),

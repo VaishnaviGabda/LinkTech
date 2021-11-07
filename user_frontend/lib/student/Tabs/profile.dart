@@ -22,31 +22,27 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     final user = UserPrefences.getUser();
 
-    return ThemeSwitchingArea(
-      child: Builder(
-        builder: (context) => Scaffold(
-          appBar: buildAppBar(context),
-          body: ListView(
-            physics: BouncingScrollPhysics(),
-            children: [
-              ProfileWidget(
-                imagePath: user.imagePath,
-                onClicked: () async {
-                  await Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => EditProfilePage()),
-                  );
-                  setState(() {});
-                },
-              ),
-              const SizedBox(height: 24),
-              buildName(user),
-              const SizedBox(height: 24),
-              Center(child: buildUpgradeButton()),
-              const SizedBox(height: 48),
-              buildAbout(user),
-            ],
+    return Scaffold(
+      appBar: buildAppBar(context),
+      body: ListView(
+        physics: BouncingScrollPhysics(),
+        children: [
+          ProfileWidget(
+            imagePath: user.imagePath,
+            onClicked: () async {
+              await Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => EditProfilePage()),
+              );
+              setState(() {});
+            },
           ),
-        ),
+          const SizedBox(height: 24),
+          buildName(user),
+          const SizedBox(height: 24),
+          Center(child: buildUpgradeButton()),
+          const SizedBox(height: 48),
+          buildAbout(user),
+        ],
       ),
     );
   }
