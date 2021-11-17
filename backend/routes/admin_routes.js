@@ -16,8 +16,11 @@ router.post('/add_new_course',(req,res,next)=>{
 
 
 router.get('/get_courses',(req,res,next)=>{
+
     Courses.find()
     .then((result)=>{
+        console.log(result)
+        
         res.send(result)
     })
 })
@@ -28,8 +31,9 @@ router.get('/get_Java',(req,res,next)=>{
     })
 })
 router.get('/get_CPP',(req,res,next)=>{
-    Courses.findOne({'name':'CPP'})
+    Courses.One({'name':'CPP'})
     .then((result)=>{
+
         res.send(result)
     })
 })

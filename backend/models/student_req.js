@@ -1,17 +1,13 @@
 const mongoose = require("mongoose")
-const Requests = mongoose.Schema({
+const StudentData = mongoose.Schema({
     "name":{
         type: String
     },
-    "duration":{
-        type: String
-    },
-    "fees":{
-        type: String
-    },
-    "seats":{
-        type: String
-    }
+    // "courseid":{
+    //     type: String
+    // }
+
+   
 })
 
-module.exports = mongoose.model("Courses",Courses)
+module.exports = mongoose.model("Student",StudentData)
