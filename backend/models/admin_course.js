@@ -12,9 +12,7 @@ const Courses = mongoose.Schema({
     "seats":{
         type: String
     },
-    "requests":{
-        type:Array
-    }
+    
 })
 
 module.exports = mongoose.model("Courses",Courses)

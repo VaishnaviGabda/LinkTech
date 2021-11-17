@@ -1,6 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/admin/Home/dashboard.dart';
+import 'package:frontend/admin/menus/data.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 class UploadNewCourse extends StatefulWidget {
   const UploadNewCourse({Key? key}) : super(key: key);
@@ -12,9 +18,30 @@ class UploadNewCourse extends StatefulWidget {
 class _UploadNewCourseState extends State<UploadNewCourse> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController cname = TextEditingController();
+    TextEditingController cduration = TextEditingController();
+    TextEditingController cfees = TextEditingController();
+    TextEditingController cseats = TextEditingController();
+    Future<Data> saveData(
+        String cname, String cduration, String cfees, String cseats) async {
+      String uri = "http://localhost:3000/admin/add_new_course";
+      final response = await http.post(Uri.parse(uri),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode({
+            "name": cname,
+            "duration": cduration,
+            "fees": cfees,
+            "seats": cseats
+          }));
+      return dataFromJson(response.body);
+    }
+
     return Scaffold(
         body: Container(
-            child: Column(
+            child: Form(
+                child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
@@ -22,7 +49,8 @@ class _UploadNewCourseState extends State<UploadNewCourse> {
         ),
         Container(
           margin: EdgeInsets.all(12),
-          child: TextField(
+          child: TextFormField(
+            controller: cname,
             decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -34,7 +62,8 @@ class _UploadNewCourseState extends State<UploadNewCourse> {
         ),
         Container(
           margin: EdgeInsets.all(12),
-          child: TextField(
+          child: TextFormField(
+            controller: cduration,
             decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -46,7 +75,8 @@ class _UploadNewCourseState extends State<UploadNewCourse> {
         ),
         Container(
           margin: EdgeInsets.all(12),
-          child: TextField(
+          child: TextFormField(
+            controller: cfees,
             decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -58,7 +88,8 @@ class _UploadNewCourseState extends State<UploadNewCourse> {
         ),
         Container(
           margin: EdgeInsets.all(12),
-          child: TextField(
+          child: TextFormField(
+            controller: cseats,
             decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -81,9 +112,21 @@ class _UploadNewCourseState extends State<UploadNewCourse> {
                         fontWeight: FontWeight.w400,
                       ))),
               color: HexColor("#0000FF"),
-              onPressed: () {}),
+              onPressed: () {
+                print(cseats.text);
+                print(cname.text);
+
+                saveData(cname.text, cduration.text, cfees.text, cseats.text);
+                cname.text = " ";
+                cduration.text = " ";
+                cfees.text = " ";
+                cseats.text = " ";
+
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (context) => Dashboard()));
+              }),
         ),
       ],
-    )));
+    ))));
   }
 }
