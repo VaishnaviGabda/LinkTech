@@ -3,6 +3,15 @@ const StudentData = mongoose.Schema({
     "name":{
         type: String
     },
+    "college":{
+        type:String
+    },
+    "year":{
+        type:String
+    },
+    "email":{
+        type:String
+    }
     // "courseid":{
     //     type: String
     // }

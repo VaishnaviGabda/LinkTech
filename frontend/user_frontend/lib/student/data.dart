@@ -18,12 +18,10 @@ class Data {
   String fees;
   String seats;
   Data(
-      {
-      this.name :"abc",
-      this.duration :"abc",
-      this.fees : "abc",
-      this.seats :"abc"
-      });
+      {this.name: "abc",
+      this.duration: "abc",
+      this.fees: "abc",
+      this.seats: "abc"});
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         name: json["name"],
@@ -35,4 +33,3 @@ class Data {
   Map<String, dynamic> toJson() =>
       {"name": name, "duration": duration, "fees": fees, "seats": seats};
 }
-

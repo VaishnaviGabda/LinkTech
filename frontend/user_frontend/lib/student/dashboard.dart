@@ -51,7 +51,9 @@ class _DashboardState extends State<Dashboard> {
                         ),
                       ),
                       body: const TabBarView(
-                        children: [Home(), About(), Profile()],
+                        children: [Home(), About(), About(),
+                        //Profile()
+                        ],
                       ),
                     ),
                   ),

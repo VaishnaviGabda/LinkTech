@@ -1,39 +1,34 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/admin/Home/dashboard.dart';
-import 'package:frontend/admin/menus/data.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 
-class UploadNewCourse extends StatefulWidget {
-  const UploadNewCourse({Key? key}) : super(key: key);
+import 'package:user_frontend/student/Tabs/home.dart';
+import 'package:user_frontend/student/student.dart';
 
-  @override
-  _UploadNewCourseState createState() => _UploadNewCourseState();
-}
+class StudentForm extends StatelessWidget {
+  String passname;
+  StudentForm({required this.passname});
 
-class _UploadNewCourseState extends State<UploadNewCourse> {
-  @override
   Widget build(BuildContext context) {
-    TextEditingController cname = TextEditingController();
-    TextEditingController cduration = TextEditingController();
-    TextEditingController cfees = TextEditingController();
-    TextEditingController cseats = TextEditingController();
-    Future<Data> saveData(
-        String cname, String cduration, String cfees, String cseats) async {
-      String uri = "http://localhost:3000/admin/add_new_course";
+    TextEditingController sname = TextEditingController();
+    TextEditingController scollege = TextEditingController();
+    TextEditingController sdegree = TextEditingController();
+    TextEditingController semail = TextEditingController();
+    Future<Student> saveData(
+        String sname, String scollege, String semail, String sdegree) async {
+      String uri = "http://localhost:3000/student/add_new_student:passname";
       final response = await http.post(Uri.parse(uri),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
           body: jsonEncode({
-            "name": cname,
-            "duration": cduration,
-            "fees": cfees,
-            "seats": cseats
+            "name": sname,
+            "college": scollege,
+            "email": semail,
+            "degree": sdegree
           }));
       return dataFromJson(response.body);
     }
@@ -48,54 +43,64 @@ class _UploadNewCourseState extends State<UploadNewCourse> {
           height: 10,
         ),
         Container(
+          child: Text("Enroll Now For " + passname + " Course",
+              style: TextStyle(
+                  color: HexColor("#0000FF"),
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold)),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Container(
           margin: EdgeInsets.all(12),
           child: TextFormField(
-            controller: cname,
+            controller: sname,
             decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                hintText: " Enter course name",
+                hintText: " Enter your name",
                 hintStyle: TextStyle(fontSize: 14)),
           ),
         ),
         Container(
           margin: EdgeInsets.all(12),
           child: TextFormField(
-            controller: cduration,
+            controller: scollege,
             decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                hintText: " Enter duration",
+                hintText: " Enter college name",
                 hintStyle: TextStyle(fontSize: 14)),
           ),
         ),
         Container(
           margin: EdgeInsets.all(12),
           child: TextFormField(
-            controller: cfees,
+            controller: semail,
             decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                hintText: " Enter fees",
+                hintText: " Enter your email",
                 hintStyle: TextStyle(fontSize: 14)),
           ),
         ),
         Container(
           margin: EdgeInsets.all(12),
           child: TextFormField(
-            controller: cseats,
+            controller: sdegree,
             decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                hintText: " Enter total seats",
+                hintText: " Enter your Ongoing Degree",
                 hintStyle: TextStyle(fontSize: 14)),
           ),
         ),
@@ -105,7 +110,7 @@ class _UploadNewCourseState extends State<UploadNewCourse> {
           child: RaisedButton(
               child: Container(
                   padding: EdgeInsets.all(10),
-                  child: Text("Upload New Course",
+                  child: Text("Upload Your Data",
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.white,
@@ -113,19 +118,19 @@ class _UploadNewCourseState extends State<UploadNewCourse> {
                       ))),
               color: HexColor("#0000FF"),
               onPressed: () {
-                print(cseats.text);
-                print(cname.text);
+                print(sdegree.text);
+                print(sname.text);
 
-                saveData(cname.text, cduration.text, cfees.text, cseats.text);
-                print(cseats.text);
-                print(cname.text);
-                cname.text = " ";
-                cduration.text = " ";
-                cfees.text = " ";
-                cseats.text = " ";
+                saveData(sname.text, scollege.text, semail.text, sdegree.text);
+                print(sdegree.text);
+                print(sname.text);
+                sname.text = " ";
+                scollege.text = " ";
+                semail.text = " ";
+                sdegree.text = " ";
 
                 Navigator.push(context,
-                    new MaterialPageRoute(builder: (context) => Dashboard()));
+                    new MaterialPageRoute(builder: (context) => Home()));
               }),
         ),
       ],

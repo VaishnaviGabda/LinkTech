@@ -14,6 +14,13 @@ router.post('/add_new_course',(req,res,next)=>{
     })
 })
 
+router.post('/delete_course',(req,res,next)=>{
+    Courses.findOneAndDelete({"name":req.body.name})
+    .then(() =>{
+        res.send({msg:"deleted"})
+    })
+})
+
 
 router.get('/get_courses',(req,res,next)=>{
 

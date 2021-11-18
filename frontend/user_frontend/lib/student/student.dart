@@ -8,24 +8,22 @@ class Model {
   Model(this.name, this.duration, this.fees, this.seats);
 }
 
-Data dataFromJson(String str) => Data.fromJson(json.decode(str));
+Student dataFromJson(String str) => Student.fromJson(json.decode(str));
 
-String dataToJson(Data data) => json.encode(data.toJson());
+String dataToJson(Student data) => json.encode(data.toJson());
 
-class Data {
+class Student {
   String name;
   String duration;
   String fees;
   String seats;
-  Data(
-      {
-      this.name :"abc",
-      this.duration :"abc",
-      this.fees : "abc",
-      this.seats :"abc"
-      });
+  Student(
+      {this.name: "abc",
+      this.duration: "abc",
+      this.fees: "abc",
+      this.seats: "abc"});
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory Student.fromJson(Map<String, dynamic> json) => Student(
         name: json["name"],
         duration: json["duration"],
         fees: json["fees"],
@@ -35,4 +33,3 @@ class Data {
   Map<String, dynamic> toJson() =>
       {"name": name, "duration": duration, "fees": fees, "seats": seats};
 }
-
