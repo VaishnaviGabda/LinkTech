@@ -19,29 +19,30 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: HexColor("#0000FF"),
       ),
-      home: AnimatedSplashScreen(
-          splash: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset('assets/images/logoo.png', width: 55),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "LinkTech",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-          duration: 3000,
-          splashTransition: SplashTransition.fadeTransition,
-          backgroundColor: HexColor("#0000FF"),
-          nextScreen: Login()),
+      home: Login(),
+      // home: AnimatedSplashScreen(
+      //     splash: Center(
+      //       child: Column(
+      //         // mainAxisAlignment: MainAxisAlignment.center,
+      //         children: [
+      //           Image.asset('assets/images/logoo.png', width: 55),
+      //           SizedBox(
+      //             height: 5,
+      //           ),
+      //           Text(
+      //             "LinkTech",
+      //             style: TextStyle(
+      //                 color: Colors.white,
+      //                 fontSize: 17,
+      //                 fontWeight: FontWeight.bold),
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //     duration: 3000,
+      //     splashTransition: SplashTransition.fadeTransition,
+      //     backgroundColor: HexColor("#0000FF"),
+      //     nextScreen:),
     );
   }
 }

@@ -4,7 +4,9 @@ const router = express.Router()
 const Courses = require("../models/admin_course")
 const Student = require("../models/student_req")
 
+
 router.post('/add_new_student:id', (req,res,next)=>{
+    console.log("hii");
     students = Student(req.body)
     students.save()
     .then(async(result)=>{
@@ -26,6 +28,21 @@ router.post('/add_new_student:id', (req,res,next)=>{
     })
     .catch(err => {
         console.log(err);
+    })
+})
+
+router.get('/get_all_student_requests', (req,res,next)=>{
+    Enrollment.find()
+    .then(result =>{
+        res.send(result)
+    })
+})
+
+
+router.get('/get_confirmed_students', (req,res,next)=>{
+    Enrollment.findOne({"status":true})
+    .then(result =>{
+        res.send(result)
     })
 })
 

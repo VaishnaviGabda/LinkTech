@@ -34,18 +34,17 @@ class _HomeState extends State<Home> {
   }
 
   Future<Course> deleteCourse(String cname) async {
-      String uri = "http://localhost:3000/admin/delete_course";
-      final response = await http.post(Uri.parse(uri),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: jsonEncode({
-            "name": cname,
-          }));
-          setState(() {
-          });
-      return courseFromJson(response.body);
-    }
+    String uri = "http://localhost:3000/admin/delete_course";
+    final response = await http.post(Uri.parse(uri),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode({
+          "name": cname,
+        }));
+    setState(() {});
+    return courseFromJson(response.body);
+  }
 
   // Future<Course> deleteAlbum(String id) async {
   //     final http.Response response = await http.delete(
@@ -104,24 +103,29 @@ class _HomeState extends State<Home> {
                             itemBuilder: (context, index) {
                               return Container(
                                 margin: EdgeInsets.all(5),
-                                child: ListTile(
-                                    tileColor: Colors.grey[200],
-                                    title: Row(
-                                      children: [
-                                        Text(snapshot.data![index].name,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w700)),
-                                        Spacer(),
-                                        SizedBox(width: 20),
-                                        IconButton(
-                                            icon: new Icon(Icons.delete),
-                                            color: Colors.red,
-                                            onPressed: () {
-                                              deleteCourse(
-                                                  snapshot.data![index].name);
-                                            }),
-                                      ],
-                                    )),
+                                child: Card(
+                                  elevation: 4,
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: ListTile(
+                                      tileColor: Colors.grey[200],
+                                      title: Row(
+                                        children: [
+                                          Text(snapshot.data![index].name,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w700)),
+                                          Spacer(),
+                                          SizedBox(width: 20),
+                                          IconButton(
+                                              icon: new Icon(Icons.delete),
+                                              color: Colors.red,
+                                              onPressed: () {
+                                                deleteCourse(
+                                                    snapshot.data![index].name);
+                                              }),
+                                        ],
+                                      )),
+                                ),
                               );
                             });
                       }

@@ -6,11 +6,12 @@ const StudentData = mongoose.Schema({
     "college":{
         type:String
     },
-    "year":{
-        type:String
-    },
     "email":{
         type:String
+    },
+    "degree":{
+        type:String
+
     }
     // "courseid":{
     //     type: String

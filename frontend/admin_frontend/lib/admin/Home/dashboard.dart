@@ -18,7 +18,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  var currentPage = DrawerSections.Home;
+  var currentPage = DrawerSections.Students;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ class _DashboardState extends State<Dashboard> {
               currentPage == DrawerSections.Login ? true : false),
           menuItem(2, "Home", Icons.home,
               currentPage == DrawerSections.Home ? true : false),
-          menuItem(3, "Courses", Icons.book_outlined,
+          menuItem(3, "Add Course", Icons.book_outlined,
               currentPage == DrawerSections.Courses ? true : false),
           menuItem(4, "Requests", Icons.person_add_alt_outlined,
               currentPage == DrawerSections.Requests ? true : false),

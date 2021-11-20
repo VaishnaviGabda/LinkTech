@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Courses = require("../models/admin_course")
+const Enrollment = require('../models/enrollment')
 
 router.post('/add_new_course',(req,res,next)=>{
     course = Courses(req.body)
@@ -31,25 +32,33 @@ router.get('/get_courses',(req,res,next)=>{
         res.send(result)
     })
 })
-router.get('/get_Java',(req,res,next)=>{
-    Courses.findOne({'name':'Java'})
-    .then((result)=>{
-        res.send(result)
-    })
-})
-router.get('/get_CPP',(req,res,next)=>{
-    Courses.One({'name':'CPP'})
-    .then((result)=>{
 
-        res.send(result)
+router.put("/update_status:id",(req,res,next) =>{
+    Enrollment.findOneAndUpdate({"_id":req.params.id},{$set:{"status":true}}).
+    then(() =>{
+        res.send("Updated...")
     })
 })
-router.get('/get_C',(req,res,next)=>{
-    Courses.findOne({'name':'C'})
-    .then((result)=>{
-        res.send(result)
-    })
-})
+
+// router.get('/get_Java',(req,res,next)=>{
+//     Courses.findOne({'name':'Java'})
+//     .then((result)=>{
+//         res.send(result)
+//     })
+// })
+// router.get('/get_CPP',(req,res,next)=>{
+//     Courses.One({'name':'CPP'})
+//     .then((result)=>{
+
+//         res.send(result)
+//     })
+// })
+// router.get('/get_C',(req,res,next)=>{
+//     Courses.findOne({'name':'C'})
+//     .then((result)=>{
+//         res.send(result)
+//     })
+// })
 
 
 module.exports = router

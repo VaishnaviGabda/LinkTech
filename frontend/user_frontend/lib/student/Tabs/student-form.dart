@@ -9,8 +9,8 @@ import 'package:user_frontend/student/Tabs/home.dart';
 import 'package:user_frontend/student/student.dart';
 
 class StudentForm extends StatelessWidget {
-  String passname;
-  StudentForm({required this.passname});
+  String passname, id;
+  StudentForm({required this.id, required this.passname});
 
   Widget build(BuildContext context) {
     TextEditingController sname = TextEditingController();
@@ -19,7 +19,9 @@ class StudentForm extends StatelessWidget {
     TextEditingController semail = TextEditingController();
     Future<Student> saveData(
         String sname, String scollege, String semail, String sdegree) async {
-      String uri = "http://localhost:3000/student/add_new_student:passname";
+      print(id);
+      // String c_id = id.toString();
+      String uri = "http://localhost:3000/student/add_new_student$id";
       final response = await http.post(Uri.parse(uri),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
@@ -110,7 +112,7 @@ class StudentForm extends StatelessWidget {
           child: RaisedButton(
               child: Container(
                   padding: EdgeInsets.all(10),
-                  child: Text("Upload Your Data",
+                  child: Text("Send Request",
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.white,

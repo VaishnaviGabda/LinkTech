@@ -17,7 +17,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late String passname;
+  late String passname,id;
 
   Future<List<Model>> getUserData() async {
     var response =
@@ -27,14 +27,14 @@ class _HomeState extends State<Home> {
     List<Model> users = [];
 
     for (var user in jsonData) {
-      Model d =
-          Model(user["name"], user["duration"], user["fees"], user["seats"]);
+      Model d = Model(user["_id"], user["name"], user["duration"], user["fees"],
+          user["seats"]);
       users.add(d);
       passname = user["name"];
+      id = user["_id"];
     }
 
     print(users.length);
-    print("namee" + passname);
 
     return users;
   }
@@ -45,13 +45,6 @@ class _HomeState extends State<Home> {
       child: Container(
           child: Card(
               child: new InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => StudentForm(
-                              passname: passname,
-                            )));
-                    print(passname);
-                  },
                   child: FutureBuilder<List<Model>>(
                       future: getUserData(),
                       builder: (context, snapshot) {
@@ -91,15 +84,30 @@ class _HomeState extends State<Home> {
                                                     SizedBox(
                                                       width: 6,
                                                     ),
-                                                    Text(
-                                                        snapshot
-                                                            .data![index].name,
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w700)),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        Navigator.of(context).push(
+                                                            MaterialPageRoute(
+                                                                builder: (context) => StudentForm(
+                                                                    id: snapshot
+                                                                        .data![
+                                                                            index]
+                                                                        .id,
+                                                                    passname: snapshot
+                                                                        .data![
+                                                                            index]
+                                                                        .name)));
+                                                      },
+                                                      child: Text(
+                                                          snapshot.data![index]
+                                                              .name,
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700)),
+                                                    ),
                                                   ],
                                                 ),
                                                 SizedBox(

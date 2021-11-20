@@ -7,6 +7,10 @@ const Enrollment = new Schema({
     },
     "course_name":{
         type: String
+    },
+    "status":{
+        type: Boolean,
+        default: false
     }
 })
 
