@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:user_frontend/student/Tabs/student-form.dart';
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:user_frontend/student/data.dart';
 
 class Home extends StatefulWidget {
@@ -17,7 +16,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late String passname,id;
+  late String passname, id;
 
   Future<List<Model>> getUserData() async {
     var response =
@@ -30,9 +29,11 @@ class _HomeState extends State<Home> {
       Model d = Model(user["_id"], user["name"], user["duration"], user["fees"],
           user["seats"]);
       users.add(d);
-      passname = user["name"];
+      //passname = user["name"];
       id = user["_id"];
     }
+
+    setState(() {});
 
     print(users.length);
 
@@ -63,126 +64,133 @@ class _HomeState extends State<Home> {
                                       fontSize: 20,
                                       fontWeight: FontWeight.w500)));
                         } else {
-                          return ListView.builder(
-                              itemCount: snapshot.data!.length,
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  margin: EdgeInsets.all(5),
-                                  child: ListTile(
-                                      tileColor: Colors.grey[200],
-                                      title: Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 120,
-                                            child: Column(
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    Text("Course",
-                                                        textAlign:
-                                                            TextAlign.left),
-                                                    SizedBox(
-                                                      width: 6,
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        Navigator.of(context).push(
-                                                            MaterialPageRoute(
-                                                                builder: (context) => StudentForm(
-                                                                    id: snapshot
-                                                                        .data![
-                                                                            index]
-                                                                        .id,
-                                                                    passname: snapshot
-                                                                        .data![
-                                                                            index]
-                                                                        .name)));
-                                                      },
-                                                      child: Text(
+                          return Scrollbar(
+                            child: ListView.builder(
+                                itemCount: snapshot.data!.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    margin: EdgeInsets.all(5),
+                                    child: ListTile(
+                                        tileColor: Colors.grey[200],
+                                        title: Row(
+                                          children: [
+                                            SizedBox(
+                                              height: 120,
+                                              child: Column(
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Text("Course",
+                                                          textAlign:
+                                                              TextAlign.left),
+                                                      SizedBox(
+                                                        width: 6,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                              snapshot
+                                                                  .data![index]
+                                                                  .name,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left,
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700)),
+                                                          RaisedButton(
+                                                              child: Text(
+                                                                  "Enroll Now ->"),
+                                                              onPressed: () {
+                                                                Navigator.of(context).push(MaterialPageRoute(
+                                                                    builder: (context) => StudentForm(
+                                                                        id: snapshot
+                                                                            .data![
+                                                                                index]
+                                                                            .id,
+                                                                        passname: snapshot
+                                                                            .data![index]
+                                                                            .name)));
+                                                              })
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 6,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text("Duration",
+                                                          textAlign:
+                                                              TextAlign.left),
+                                                      SizedBox(
+                                                        width: 6,
+                                                      ),
+                                                      Text(
                                                           snapshot.data![index]
-                                                              .name,
+                                                              .duration,
                                                           textAlign:
                                                               TextAlign.left,
                                                           style: TextStyle(
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w700)),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: 6,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Text("Duration",
-                                                        textAlign:
-                                                            TextAlign.left),
-                                                    SizedBox(
-                                                      width: 6,
-                                                    ),
-                                                    Text(
-                                                        snapshot.data![index]
-                                                            .duration,
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w700)),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: 6,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Text("Fees",
-                                                        textAlign:
-                                                            TextAlign.left),
-                                                    SizedBox(
-                                                      width: 6,
-                                                    ),
-                                                    Text(
-                                                        snapshot
-                                                            .data![index].fees,
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w700)),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: 6,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Text("Seats",
-                                                        textAlign:
-                                                            TextAlign.left),
-                                                    SizedBox(
-                                                      width: 6,
-                                                    ),
-                                                    Text(
-                                                        snapshot
-                                                            .data![index].seats,
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w700)),
-                                                  ],
-                                                ),
-                                              ],
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 6,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text("Fees",
+                                                          textAlign:
+                                                              TextAlign.left),
+                                                      SizedBox(
+                                                        width: 6,
+                                                      ),
+                                                      Text(
+                                                          snapshot.data![index]
+                                                              .fees,
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700)),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 6,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text("Seats",
+                                                          textAlign:
+                                                              TextAlign.left),
+                                                      SizedBox(
+                                                        width: 6,
+                                                      ),
+                                                      Text(
+                                                          snapshot.data![index]
+                                                              .seats,
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700)),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      )),
-                                );
-                              });
+                                          ],
+                                        )),
+                                  );
+                                }),
+                          );
                         }
                       })))),
     );

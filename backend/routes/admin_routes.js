@@ -36,6 +36,7 @@ router.get('/get_courses',(req,res,next)=>{
 router.put("/update_status:id",(req,res,next) =>{
     Enrollment.findOneAndUpdate({"_id":req.params.id},{$set:{"status":true}}).
     then(() =>{
+        console.log("updated status trueeeeeeeeeeeeeeeeeee");
         res.send("Updated...")
     })
 })

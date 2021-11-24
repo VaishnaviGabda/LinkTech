@@ -46,35 +46,10 @@ class _HomeState extends State<Home> {
     return courseFromJson(response.body);
   }
 
-  // Future<Course> deleteAlbum(String id) async {
-  //     final http.Response response = await http.delete(
-  //       Uri.parse('http://localhost:3000/admin/delete_course'),
-  //       headers: <String, String>{
-  //         'Content-Type': 'application/json; charset=UTF-8',
-  //       },
-  //       body:jsonEncode({"name": id})
-  //     );
-
-  //     if (response.statusCode == 200) {
-  //       return Course.fromJson(jsonDecode(response.body));
-  //     } else {
-  //       throw Exception(' failed to deleted');
-  //     }
-  //   }
+  
 
   @override
   Widget build(BuildContext context) {
-    // Future<Course> deleteCourse(String name) async {
-    //   String uri = "http://localhost:3000/admin/delete_course";
-    //   final response = await http.delete(Uri.parse(uri),
-    //       headers: <String, String>{
-    //         'Content-Type': 'application/json; charset=UTF-8',
-    //       },
-    //       return Course.fromJson(jsonDecode(response.body));
-
-    //   // setState(() {});
-    //   // return courseFromJson(response.body);
-    // }
 
     TextEditingController name = TextEditingController();
     return Center(

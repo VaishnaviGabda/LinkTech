@@ -32,7 +32,7 @@ router.post('/add_new_student:id', (req,res,next)=>{
 })
 
 router.get('/get_all_student_requests', (req,res,next)=>{
-    Enrollment.find()
+    Enrollment.find({"status":false})
     .then(result =>{
         res.send(result)
     })
@@ -40,7 +40,7 @@ router.get('/get_all_student_requests', (req,res,next)=>{
 
 
 router.get('/get_confirmed_students', (req,res,next)=>{
-    Enrollment.findOne({"status":true})
+    Enrollment.find({"status":true})
     .then(result =>{
         res.send(result)
     })
