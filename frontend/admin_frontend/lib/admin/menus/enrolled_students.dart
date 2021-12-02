@@ -18,7 +18,7 @@ class _EnrolledStudentsState extends State<EnrolledStudents> {
 
   Future<List<Model>> getUserData() async {
     var response = await http.get(
-        Uri.parse("http://localhost:3000/student/get_confirmed_students"));
+        Uri.parse("https://linktech.herokuapp.com/student/get_confirmed_students"));
     var jsonData = json.decode(response.body);
 
     List<Model> users = [];

@@ -18,7 +18,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Future<List<Model>> getUserData() async {
     var response =
-        await http.get(Uri.parse("http://localhost:3000/admin/get_courses"));
+        await http.get(Uri.parse("https://linktech.herokuapp.com/admin/get_courses"));
     var jsonData = json.decode(response.body);
 
     List<Model> users = [];
@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
   }
 
   Future<Course> deleteCourse(String cname) async {
-    String uri = "http://localhost:3000/admin/delete_course";
+    String uri = "https://linktech.herokuapp.com/admin/delete_course";
     final response = await http.post(Uri.parse(uri),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',

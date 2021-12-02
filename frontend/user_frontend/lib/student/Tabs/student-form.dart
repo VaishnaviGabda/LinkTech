@@ -21,7 +21,7 @@ class StudentForm extends StatelessWidget {
         String sname, String scollege, String semail, String sdegree) async {
       print(id);
       // String c_id = id.toString();
-      String uri = "http://localhost:3000/student/add_new_student$id";
+      String uri = "https://linktech.herokuapp.com/student/add_new_student$id";
       final response = await http.post(Uri.parse(uri),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',

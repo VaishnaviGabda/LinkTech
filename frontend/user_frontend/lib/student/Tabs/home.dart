@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
 
   Future<List<Model>> getUserData() async {
     var response =
-        await http.get(Uri.parse("http://localhost:3000/admin/get_courses"));
+        await http.get(Uri.parse("https://linktech.herokuapp.com/admin/get_courses"));
     var jsonData = json.decode(response.body);
 
     List<Model> users = [];

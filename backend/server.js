@@ -5,9 +5,11 @@ const adminroutes = require('./routes/admin_routes')
 const loginroutes = require('./routes/login_routes')
 const studentroutes = require('./routes/student_req_routes')
 const cors = require('cors')
+require("dotenv").config();
 
 
-const port = 3000
+//let port = process.env.PORT || 5000
+//let host = process.env.HOST
 app.use(express.json())
 
 app.use(cors());
@@ -19,10 +21,8 @@ app.use(cors());
  app.use('/',loginroutes)
  app.use('/student',studentroutes)
 
- app.listen(port,()=>{
 
-
-    console.log('Listen at 3000')
-    
+app.listen(process.env.PORT || 3000, function(){
+   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
  });
 

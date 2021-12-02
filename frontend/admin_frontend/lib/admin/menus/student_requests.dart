@@ -18,7 +18,7 @@ class _StudentRequestsState extends State<StudentRequests> {
 
   Future<List<Model>> getUserData() async {
     var response = await http.get(
-        Uri.parse("http://localhost:3000/student/get_all_student_requests"));
+        Uri.parse("https://linktech.herokuapp.com/student/get_all_student_requests"));
     var jsonData = json.decode(response.body);
 
     List<Model> users = [];
@@ -38,7 +38,7 @@ class _StudentRequestsState extends State<StudentRequests> {
   void updateData(id) async {
     print(id);
 
-    String uri = "http://localhost:3000/admin/update_status$id";
+    String uri = "https://linktech.herokuapp.com/admin/update_status$id";
     final response = await http.put(Uri.parse(uri), headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     });

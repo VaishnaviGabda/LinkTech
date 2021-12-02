@@ -24,7 +24,7 @@ class _UploadNewCourseState extends State<UploadNewCourse> {
     TextEditingController cseats = TextEditingController();
     Future<Data> saveData(
         String cname, String cduration, String cfees, String cseats) async {
-      String uri = "http://localhost:3000/admin/add_new_course";
+      String uri = "https://linktech.herokuapp.com/admin/add_new_course";
       final response = await http.post(Uri.parse(uri),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
