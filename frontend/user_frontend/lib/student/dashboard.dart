@@ -33,6 +33,7 @@ class _DashboardState extends State<Dashboard> {
             appBar: AppBar(
               backgroundColor: HexColor("#0000FF"),
               title: Text('LinkTech'),
+              
             ),
             bottomNavigationBar: menu(),
           )),

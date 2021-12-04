@@ -69,122 +69,139 @@ class _HomeState extends State<Home> {
                                 itemCount: snapshot.data!.length,
                                 itemBuilder: (context, index) {
                                   return Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(color: Colors.grey)
+                                    ),
                                     margin: EdgeInsets.all(5),
                                     child: ListTile(
-                                        tileColor: Colors.grey[200],
-                                        title: Row(
+                                      
+                                    // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(70)),
+                    
+                                        title: Column(
                                           children: [
-                                            SizedBox(
-                                              height: 120,
-                                              child: Column(
+                                            Container(
+                                              decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                     
+                                      color: Colors.grey[300],
+                                     
+                                    ),
+                              
+                                              padding: EdgeInsets.all(10),
+                                              
+                                              child: Row(
                                                 children: [
                                                   Row(
                                                     children: [
-                                                      Text("Course",
-                                                          textAlign:
-                                                              TextAlign.left),
-                                                      SizedBox(
-                                                        width: 6,
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          Text(
-                                                              snapshot
-                                                                  .data![index]
-                                                                  .name,
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .left,
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w700)),
-                                                          RaisedButton(
-                                                              child: Text(
-                                                                  "Enroll Now ->"),
-                                                              onPressed: () {
-                                                                Navigator.of(context).push(MaterialPageRoute(
-                                                                    builder: (context) => StudentForm(
-                                                                        id: snapshot
-                                                                            .data![
-                                                                                index]
-                                                                            .id,
-                                                                        passname: snapshot
-                                                                            .data![index]
-                                                                            .name)));
-                                                              })
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 6,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Text("Duration",
-                                                          textAlign:
-                                                              TextAlign.left),
-                                                      SizedBox(
-                                                        width: 6,
-                                                      ),
                                                       Text(
-                                                          snapshot.data![index]
-                                                              .duration,
+                                                          snapshot
+                                                              .data![index]
+                                                              .name.toUpperCase(),
                                                           textAlign:
-                                                              TextAlign.left,
+                                                              TextAlign
+                                                                  .left,
                                                           style: TextStyle(
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .w700)),
+                                                                      .w800)),
                                                     ],
                                                   ),
-                                                  SizedBox(
-                                                    height: 6,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Text("Fees",
-                                                          textAlign:
-                                                              TextAlign.left),
-                                                      SizedBox(
-                                                        width: 6,
-                                                      ),
-                                                      Text(
-                                                          snapshot.data![index]
-                                                              .fees,
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700)),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 6,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Text("Seats",
-                                                          textAlign:
-                                                              TextAlign.left),
-                                                      SizedBox(
-                                                        width: 6,
-                                                      ),
-                                                      Text(
-                                                          snapshot.data![index]
-                                                              .seats,
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700)),
-                                                    ],
-                                                  ),
+                                                   Spacer(),
+                                                
+                                                  IconButton(
+                                                    icon: Icon(Icons.arrow_forward),    
+                                                      onPressed: () {
+                                                        Navigator.of(context).push(MaterialPageRoute(
+                                                            builder: (context) => StudentForm(
+                                                                id: snapshot
+                                                                    .data![
+                                                                        index]
+                                                                    .id,
+                                                                passname: snapshot
+                                                                    .data![index]
+                                                                    .name)));
+                                                      })
                                                 ],
                                               ),
+                                            ),
+                                            SizedBox(
+                                              height: 6,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Icon(Icons.hourglass_empty,color: Colors.grey,size: 18,),
+                                                SizedBox(width: 10,),
+                                                Text("DURATION",
+                                                style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight
+                                                                .w800),
+                                                    textAlign:
+                                                        TextAlign.left),
+                                                Spacer(),
+                                                Text(
+                                                    snapshot.data![index]
+                                                        .duration,
+                                                    textAlign:
+                                                        TextAlign.left,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight
+                                                                .w800)),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 6,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Icon(Icons.money,color: Colors.grey,size: 18,),
+                                                SizedBox(width: 10,),
+                                                Text("FEES",
+                                                style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight
+                                                                .w800),
+                                                    textAlign:
+                                                        TextAlign.left),
+                                                Spacer(),
+                                                Text(
+                                                    snapshot.data![index]
+                                                        .fees,
+                                                    textAlign:
+                                                        TextAlign.left,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight
+                                                                .w800)),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 6,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Icon(Icons.school_outlined,color: Colors.grey,size: 18,),
+                                                SizedBox(width: 10,),
+                                                Text("SEATS",
+                                                style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight
+                                                                .w800),
+                                                    textAlign:
+                                                        TextAlign.left),
+                                                Spacer(),
+                                                Text(
+                                                    snapshot.data![index]
+                                                        .seats,
+                                                    textAlign:
+                                                        TextAlign.left,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight
+                                                                .w800)),
+                                              ],
                                             ),
                                           ],
                                         )),

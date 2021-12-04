@@ -18,7 +18,7 @@ app.use(cors());
  connectdb();
 
  app.use('/admin',adminroutes)
- app.use('/',loginroutes)
+ app.use('/adminlogin',loginroutes)
  app.use('/student',studentroutes)
 
 

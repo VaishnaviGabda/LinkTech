@@ -36,6 +36,18 @@ class StudentForm extends StatelessWidget {
     }
 
     return Scaffold(
+      appBar: AppBar(
+              backgroundColor: HexColor("#0000FF"),
+              title: Text('LinkTech'),
+              leading: 
+                  BackButton(
+     color: Colors.white,
+     onPressed: (){
+       Navigator.pop(context);
+     },
+   )
+              
+            ),
         body: Container(
             child: Form(
                 child: Column(
@@ -45,7 +57,7 @@ class StudentForm extends StatelessWidget {
           height: 10,
         ),
         Container(
-          child: Text("Enroll Now For " + passname + " Course",
+          child: Text("Enroll Now For " + passname.toUpperCase() + " Course",
               style: TextStyle(
                   color: HexColor("#0000FF"),
                   fontSize: 25,
@@ -65,7 +77,9 @@ class StudentForm extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 hintText: " Enter your name",
                 hintStyle: TextStyle(fontSize: 14)),
+                
           ),
+        
         ),
         Container(
           margin: EdgeInsets.all(12),
