@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/admin/Home/dashboard.dart';
+import 'package:frontend/admin/menus/data.dart';
 import 'package:frontend/admin/register.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+
+import 'menus/user.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -11,6 +17,33 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  var res;
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  // Future<User> checkData(String email, String password) async {
+  //   String uri = "http://localhost:3000/adminlogin/signin";
+  //   final response = await http.post(Uri.parse(uri),
+  //       headers: <String, String>{
+  //         'Content-Type': 'application/json; charset=UTF-8',
+  //       },
+  //       body: jsonEncode({"email": email, "password": password}));
+  //   // return userFromJson(response.body.toString());
+  //   return json.decode(response.body);
+  // }
+
+  Future<String> checkData(String email, String password) async {
+    String uri = "http://localhost:3000/adminlogin/signin";
+    final response = await http.post(Uri.parse(uri),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode({"email": email, "password": password}));
+    // return userFromJson(response.body.toString());
+    res = response.body;
+    print(response.body);
+    return res;
+  }
+
   bool _isHidden = true;
   @override
   Widget build(BuildContext context) {
@@ -38,6 +71,7 @@ class _LoginState extends State<Login> {
               Container(
                 margin: EdgeInsets.all(12),
                 child: TextField(
+                  controller: email,
                   decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -50,6 +84,7 @@ class _LoginState extends State<Login> {
               Container(
                 margin: EdgeInsets.all(12),
                 child: TextField(
+                  controller: password,
                   obscureText: _isHidden,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
@@ -83,10 +118,22 @@ class _LoginState extends State<Login> {
                             ))),
                     color: HexColor("#0000FF"),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Dashboard()),
-                      );
+                      print(email.text);
+                      print(password.text);
+
+                      // print("Riddhi Ki Kamal - ");
+                      checkData(email.text, password.text);
+
+                      if (res == "OK") {
+                        print("OKAYYY");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Dashboard()),
+                        );
+                      }
+
+                      print(email.text);
+                      print(password.text);
                     }),
               ),
               Container(

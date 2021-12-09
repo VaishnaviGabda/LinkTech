@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/admin/login.dart';
+import 'package:frontend/admin/menus/user.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -11,6 +15,18 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  Future<User> saveData(String email, String password) async {
+    String uri = "https://linktech.herokuapp.com/adminlogin/signup";
+    final response = await http.post(Uri.parse(uri),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode({"email": email, "password": password}));
+    return userFromJson(response.body);
+  }
+
   bool _isHidden = true;
   @override
   Widget build(BuildContext context) {
@@ -39,6 +55,7 @@ class _RegisterState extends State<Register> {
                 Container(
                   margin: EdgeInsets.all(12),
                   child: TextField(
+                    controller: email,
                     decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                             borderRadius:
@@ -53,6 +70,7 @@ class _RegisterState extends State<Register> {
                 Container(
                   margin: EdgeInsets.all(12),
                   child: TextField(
+                    controller: password,
                     obscureText: _isHidden,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -101,6 +119,12 @@ class _RegisterState extends State<Register> {
                               ))),
                       color: HexColor("#0000FF"),
                       onPressed: () {
+                        print(email.text);
+                        print(password.text);
+
+                        saveData(email.text, password.text);
+                        print(email.text);
+                        print(password.text);
                         Navigator.of(context).push(
                             MaterialPageRoute(builder: (context) => Login()));
                       }),
