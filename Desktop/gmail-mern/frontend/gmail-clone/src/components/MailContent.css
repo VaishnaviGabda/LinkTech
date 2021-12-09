@@ -1,0 +1,102 @@
+.mailContent{
+    background-color: white;
+    height: 91vh;
+    margin: 30px;
+}
+
+.mail__info{
+    display: flex;
+    flex-direction: column;
+}
+
+.mail__header > .MuiSvgIcon-root{
+    color: rgb(63, 60, 60) !important;
+    height: 22px;
+    padding: 16px;
+    cursor: pointer;
+}
+
+.mail__header >button .MuiSvgIcon-root{
+    color: rgb(63, 60, 60) !important;
+    height: 23px;
+    padding: 16px;
+    cursor: pointer;
+}
+
+.mail__header> button{
+    background-color: white;
+    border: none;
+}
+
+.mail__header{
+    border-bottom: 1px solid rgb(231, 230, 230);
+    margin: 12px;
+    display: flex;
+    flex-direction: row;
+}
+
+.content_header{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(231, 230, 230);
+    padding: 10px;
+}
+
+.mail__info > h3{
+    font-weight: 400;
+    font-size: 32px;
+    margin-left: 9%;
+    padding: 2px;
+}
+
+.content_header > h4{
+    font-size: 24px;
+    font-weight: 700;
+    margin-left: 2%;
+    padding: 2px;
+}
+
+.content_header > h5{
+    font-size: 22px;
+    font-weight: 500;
+    margin-left: 20%;
+    padding: 2px;
+    color: rgb(105, 104, 104);
+}
+
+#avatar{
+    margin-left: 3% !important;
+}
+
+.mail__info > h4{
+    margin-left: 10%;
+    padding-top: 20px;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.mail__content__btns > p{
+    font-size: 19px;
+    padding: 10px;
+    width: 11%;
+    color: rgb(94, 93, 93);
+    height: 20px;
+    font-weight: 500;
+    place-items: center;
+    background-color: white;
+    border-radius: 7px;
+    border: none;
+    border: 1px solid rgb(185, 185, 185);
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.mail__content__btns > p > .MuiSvgIcon-root{
+    height: 20px;
+}
+
+.mail__content__btns{
+    display: flex;
+    margin-top: 5%;
+    margin-left: 8%;
+}

@@ -1,0 +1,23 @@
+.summary__content{
+    margin: 15%;
+    background-color: whitesmoke;
+    width: 70%;
+    height: fit-content;
+    position: fixed;
+    text-align: center;
+    place-items: center;
+    padding: 20px;
+}
+
+.summary__content > button{
+    background-color: orange;
+    cursor: pointer;
+    height: 38px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.summary__content > button:hover{
+    background-color: rgb(250, 222, 173);
+}
