@@ -29,20 +29,25 @@ router.post('/signup',(req,res)=>{
 
 })
 
-router.post('/signin',(req,res)=>{
-    
-    User.findOne({email:req.body.email,password:req.body.password},(err,user)=>{
-        if(err){
-            console.log(err)
-            res.json(err)
-        }else{
-            console.log("OKKK");
-            res.send("OK")
+
+router.post("/signin",(req,res) =>{
+    console.log(`${req.body.email} ${req.body.password}`);
+    User.findOne({email: req.body.email,password: req.body.password},(err,user) =>{
+        if (err) {
+            console.log(err);
+        }
+        else {
+            if (user == null) {
+                console.log("Invalid..");
+            }
+            else {
+                console.log(`Logged in ${user}`);
+                res.json(user)
+            }
+            
         }
     })
-
-   
-
 })
+
 
 module.exports = router

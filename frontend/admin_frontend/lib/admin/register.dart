@@ -126,7 +126,7 @@ class _RegisterState extends State<Register> {
                         print(email.text);
                         print(password.text);
                         Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => Login()));
+                            MaterialPageRoute(builder: (context) => SignIn()));
                       }),
                 ),
               ])

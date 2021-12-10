@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: HexColor("#0000FF"),
       ),
-      home: Login(),
+      home: SignIn(),
       // home: AnimatedSplashScreen(
       //     splash: Center(
       //       child: Column(
