@@ -3,6 +3,7 @@ const Enrollment = require('../models/enrollment')
 const router = express.Router()
 const Courses = require("../models/admin_course")
 const Student = require("../models/student_req")
+const checkauth = require("../middlewares/check_auth")
 
 
 router.post('/add_new_student:id', (req,res,next)=>{
@@ -31,7 +32,7 @@ router.post('/add_new_student:id', (req,res,next)=>{
     })
 })
 
-router.get('/get_all_student_requests', (req,res,next)=>{
+router.get('/get_all_student_requests',checkauth, (req,res,next)=>{
     Enrollment.find({"status":false})
     .then(result =>{
         res.send(result)
@@ -39,7 +40,7 @@ router.get('/get_all_student_requests', (req,res,next)=>{
 })
 
 
-router.get('/get_confirmed_students', (req,res,next)=>{
+router.get('/get_confirmed_students',checkauth, (req,res,next)=>{
     Enrollment.find({"status":true})
     .then(result =>{
         res.send(result)
