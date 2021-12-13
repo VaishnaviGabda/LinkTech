@@ -4,6 +4,7 @@ import 'package:frontend/admin/menus/data.dart';
 import 'package:frontend/admin/register.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import 'dart:convert';
 
@@ -16,25 +17,47 @@ class SignIn extends StatefulWidget {
   _SignInState createState() => _SignInState();
 }
 
-
 class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late  bool _passwordVisible = false;
+  late bool _passwordVisible = false;
+  //bool _isLoading = false;
 
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
   var _formKey = GlobalKey<FormState>();
 
-  Future userLogin(String email, String password) async {
-    final api_url = "http://localhost:3000/adminlogin/signin";
-    var response = await http.post(Uri.parse(api_url),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode({"email": email, "password": password}));
-    // print(response.body);
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => Dashboard()));
+  // Future userLogin(String email, String password) async {
+  //   final api_url = "http://localhost:3000/adminlogin/signin";
+  //   var response = await http.post(Uri.parse(api_url),
+  //       headers: <String, String>{
+  //         'Content-Type': 'application/json; charset=UTF-8',
+  //       },
+  //       body: jsonEncode({"email": email, "password": password}));
+  //   // print(response.body);
+  //   Navigator.push(
+  //       context, MaterialPageRoute(builder: (context) => Dashboard()));
+  // }
+
+  signIn(String email, String pass) async {
+    String url = "http://localhost:3000/adminlogin/login";
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    Map body = {"email": email, "password": pass};
+    var jsonResponse;
+    var res = await http.post(url, body: body);
+    if (res.statusCode == 200) {
+      jsonResponse = json.decode(res.body);
+
+      print("Response status: ${res.statusCode}");
+      print("Response status: ${res.body}");
+
+      if (jsonResponse != null) {
+        sharedPreferences.setString("token", jsonResponse['token']);
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (BuildContext context) => Dashboard()));
+      }
+    } else {
+      print("Response status: ${res.body}");
+    }
   }
 
   @override
@@ -42,7 +65,6 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
     super.initState();
     _controller = AnimationController(vsync: this);
     _passwordVisible = false;
-
   }
 
   @override
@@ -118,31 +140,35 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
                           margin: EdgeInsets.all(18),
                           alignment: Alignment.topLeft,
                           child: RaisedButton(
-                            child: Container(
-                                padding: EdgeInsets.all(10),
-                                child: Text("Sign In",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400,
-                                    ))),
-                            color: HexColor("#0000FF"),
-                            onPressed: () {
-                              final form = _formKey.currentState;
-                              if (form != null) {
-                                if (form.validate()) {
-                                  userLogin(email.text, password.text);
-                                } else {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Register()));
-                                }
-                              } else {
-                                print('hello');
+                              child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text("Sign In",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w400,
+                                      ))),
+                              color: HexColor("#0000FF"),
+                              onPressed: () {
+                                signIn(email.text, password.text);
                               }
-                            },
-                          ),
+
+                              //() {
+                              //   final form = _formKey.currentState;
+                              //   if (form != null) {
+                              //     if (form.validate()) {
+                              //       userLogin(email.text, password.text);
+                              //     } else {
+                              //       Navigator.push(
+                              //           context,
+                              //           MaterialPageRoute(
+                              //               builder: (context) => Register()));
+                              //     }
+                              //   } else {
+                              //     print('hello');
+                              //   }
+                              //},
+                              ),
                         ),
                         Container(
                             margin: EdgeInsets.all(18),
@@ -168,4 +194,3 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
         ));
   }
 }
-  
